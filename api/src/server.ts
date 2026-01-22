@@ -28,7 +28,7 @@ const server = Fastify({
 
 // Register plugins
 await server.register(cors, {
-  origin: config.corsOrigin,
+  origin: config.corsOrigin.split(','),
   credentials: true,
 });
 

@@ -20,8 +20,8 @@ class Settings(BaseSettings):
     api_callback_url: str
     
     # Model
-    model_id: str = "stabilityai/stable-diffusion-xl-base-1.0"
-    device: str = "cuda"  # cuda, cpu, or mps
+    model_id: str = "black-forest-labs/FLUX.2-klein-4B"
+    device: str = "mps"  # cuda, cpu, or mps
 
     # Hugging Face
     hf_hub_enable_hf_transfer: Optional[str] = True

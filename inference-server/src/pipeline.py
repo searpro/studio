@@ -1,4 +1,5 @@
-from diffusers.pipelines.glm_image import GlmImagePipeline
+import torch
+from diffusers import Flux2KleinPipeline
 import logging
 from PIL import Image
 from typing import Optional
@@ -13,11 +14,12 @@ class ImageGenerationPipeline:
         logger.info(f"Loading model: {model_id}")
         logger.info(f"Using device: {settings.device}")
     
-        self.pipe = GlmImagePipeline.from_pretrained(
+        self.pipe = Flux2KleinPipeline.from_pretrained(
             model_id,
             torch_dtype=torch.bfloat16,
             device_map=settings.device,
         )
+        #self.pipe.enable_model_cpu_offload() 
 
         logger.info("Pipeline loaded successfully")
     
