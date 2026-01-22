@@ -1,0 +1,32 @@
+{
+  "name": "studio-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Studio - Asset-based Creative Suite",
+  "scripts": {
+    "dev": "concurrently -n api,web,ml -c blue,green,magenta \"pnpm --filter api dev\" \"pnpm --filter frontend dev\" \"pnpm --filter inference-server dev\"",
+    "dev:api": "pnpm --filter api dev",
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:inference": "pnpm --filter inference-server dev",
+    "build": "pnpm --filter api build && pnpm --filter frontend build",
+    "build:api": "pnpm --filter api build",
+    "build:frontend": "pnpm --filter frontend build",
+    "prisma:studio": "pnpm --filter api prisma:studio",
+    "prisma:migrate": "pnpm --filter api prisma:migrate",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "setup": "pnpm install && pnpm --filter inference-server setup",
+    "test": "pnpm --filter api test && pnpm --filter frontend test",
+    "lint": "pnpm --filter api lint && pnpm --filter frontend lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prettier": "^3.2.5"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}

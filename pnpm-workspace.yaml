@@ -1,0 +1,14 @@
+packages:
+  - api
+  - frontend
+  - inference-server
+  - shared
+
+ignoredBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
+  - bcrypt
+  - esbuild
+  - msgpackr-extract
+  - prisma
+  - protobufjs
