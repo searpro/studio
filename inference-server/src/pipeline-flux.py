@@ -1,5 +1,5 @@
 import torch
-from diffusers import DiffusionPipeline, FlowMatchEulerDiscreteScheduler
+from diffusers import Flux2KleinPipeline, FlowMatchEulerDiscreteScheduler
 from PIL import Image
 import logging
 import random
@@ -16,7 +16,7 @@ class ImageGenerationPipeline:
         logger.info(f"Loading model: {model_id}")
         logger.info(f"Using device: {settings.device}")
 
-        self.pipe = DiffusionPipeline.from_pretrained(
+        self.pipe = Flux2KleinPipeline.from_pretrained(
             model_id,
             torch_dtype=torch.bfloat16,
         ).to(settings.device)
@@ -27,7 +27,7 @@ class ImageGenerationPipeline:
         )
 
         # Important quality/perf options
-        #self.pipe.enable_attention_slicing()
+        self.pipe.enable_attention_slicing()
         #self.pipe.enable_vae_slicing()
         #self.pipe.enable_vae_tiling()
 
@@ -68,7 +68,7 @@ class ImageGenerationPipeline:
 
         result = self.pipe(
             prompt=prompt,
-            negative_prompt=negative_prompt,
+            #negative_prompt=negative_prompt,
             num_inference_steps=num_inference_steps,
             guidance_scale=guidance_scale,
             width=width,
